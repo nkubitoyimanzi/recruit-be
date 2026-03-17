@@ -43,7 +43,7 @@ public class SecurityConfig {
 
         configuration.setAllowedOrigins(List.of(
                 "http://localhost:3000",
-                "http://127.0.0.1:3000"
+                "https://recruitment-system-fro-git-282721-nkubitoyimanzi-8139s-projects.vercel.app"
         ));
 
         configuration.setAllowedMethods(List.of(
