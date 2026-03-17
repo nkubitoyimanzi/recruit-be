@@ -11,7 +11,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://recruitment-system-fro-git-282721-nkubitoyimanzi-8139s-projects.vercel.app/")
 public class AuthController {
 
     @Autowired

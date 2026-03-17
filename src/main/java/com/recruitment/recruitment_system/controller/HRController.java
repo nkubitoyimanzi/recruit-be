@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/hr")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://recruitment-system-fro-git-282721-nkubitoyimanzi-8139s-projects.vercel.app/")
 public class HRController {
 
     @Autowired

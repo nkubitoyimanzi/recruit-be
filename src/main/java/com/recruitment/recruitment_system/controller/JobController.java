@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/jobs")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://recruitment-system-fro-git-282721-nkubitoyimanzi-8139s-projects.vercel.app/")
 public class JobController {
 
     @Autowired
