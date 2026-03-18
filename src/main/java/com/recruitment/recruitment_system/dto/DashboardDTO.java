@@ -6,7 +6,6 @@ public class DashboardDTO {
     private long pending;
     private long accepted;
     private long rejected;
-
     public DashboardDTO() {}
 
     public DashboardDTO(long total, long pending, long accepted, long rejected) {
