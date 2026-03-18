@@ -16,19 +16,19 @@ public class AdminController {
     @Autowired
     private JobService jobService;
 
-    // Create job
+
     @PostMapping("/jobs")
     public Job createJob(@RequestBody Job job) {
         return jobService.createJob(job);
     }
 
-    // View all jobs
+
     @GetMapping("/jobs")
     public List<Job> getJobs() {
         return jobService.getAllJobs();
     }
 
-    // Delete job
+
     @DeleteMapping("/jobs/{id}")
     public void deleteJob(@PathVariable Long id) {
         jobService.deleteJob(id);

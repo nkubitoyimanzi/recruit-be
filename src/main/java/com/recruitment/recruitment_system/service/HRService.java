@@ -15,12 +15,12 @@ public class HRService {
     @Autowired
     private ApplicationRepository applicationRepository;
 
-    // Get all applications
+
     public List<Application> getAllApplications() {
         return applicationRepository.findAll();
     }
 
-    // Accept applicant
+
     public Application acceptApplication(Long id) {
 
         Optional<Application> optional = applicationRepository.findById(id);
@@ -36,7 +36,7 @@ public class HRService {
         return null;
     }
 
-    // Reject applicant
+
     public Application rejectApplication(Long id) {
 
         Optional<Application> optional = applicationRepository.findById(id);
@@ -52,7 +52,7 @@ public class HRService {
         return null;
     }
 
-    // Delete application
+
     public void deleteApplication(Long id) {
         applicationRepository.deleteById(id);
     }

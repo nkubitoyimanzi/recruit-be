@@ -9,12 +9,12 @@ import java.util.List;
 
 public interface ApplicationRepository extends JpaRepository<Application, Long> {
 
-    // ✅ User
+
     List<Application> findByEmail(String email);
 
-    // ✅ HR search + pagination
+
     Page<Application> findByLastNameContainingIgnoreCase(String lastName, Pageable pageable);
 
-    // ✅ Dashboard stats (THIS FIXES YOUR ERROR)
+
     long countByStatus(String status);
 }

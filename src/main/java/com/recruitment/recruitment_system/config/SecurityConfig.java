@@ -22,12 +22,12 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
 
-                // 🔥 VERY IMPORTANT: allow everything
+
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().permitAll()
                 )
 
-                // ❌ REMOVE BASIC AUTH (this was causing 401)
+
                 .httpBasic(httpBasic -> httpBasic.disable());
 
         return http.build();
@@ -38,16 +38,16 @@ public class SecurityConfig {
 
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // ✅ Allow ALL origins (correct way)
+
         configuration.setAllowedOriginPatterns(List.of("*"));
 
-        // ✅ Allow ALL HTTP methods
+
         configuration.setAllowedMethods(List.of("*"));
 
-        // ✅ Allow ALL headers
+
         configuration.setAllowedHeaders(List.of("*"));
 
-        // ✅ Allow credentials (cookies, auth headers)
+
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

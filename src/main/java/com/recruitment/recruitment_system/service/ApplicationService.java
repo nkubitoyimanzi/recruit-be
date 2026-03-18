@@ -23,7 +23,7 @@ public class ApplicationService {
     @Autowired(required = false)
     private Cloudinary cloudinary;
 
-    // ✅ APPLY
+
     public String submitApplication(
             String firstName,
             String lastName,
@@ -42,7 +42,7 @@ public class ApplicationService {
         application.setJobId(jobId);
         application.setStatus("PENDING");
 
-        // ✅ Upload CV to Cloudinary
+
         if (cloudinary != null && !cv.isEmpty()) {
 
             Map uploadResult = cloudinary.uploader().upload(cv.getBytes(), Map.of());
@@ -57,12 +57,12 @@ public class ApplicationService {
         return "Application submitted successfully";
     }
 
-    // ✅ USER: get own applications
+
     public List<Application> getApplicationsByEmail(String email) {
         return applicationRepository.findByEmail(email);
     }
 
-    // ✅ HR: pagination + search
+
     public Page<Application> getApplicationsForHR(String search, int page, int size) {
 
         Pageable pageable = PageRequest.of(page, size);
@@ -74,14 +74,14 @@ public class ApplicationService {
         }
     }
 
-    // ✅ HR: accept
+
     public void acceptApplication(Long id) {
         Application app = applicationRepository.findById(id).orElseThrow();
         app.setStatus("ACCEPTED");
         applicationRepository.save(app);
     }
 
-    // ✅ HR: reject
+
     public void rejectApplication(Long id, String reason) {
         Application app = applicationRepository.findById(id).orElseThrow();
         app.setStatus("REJECTED");
@@ -89,7 +89,7 @@ public class ApplicationService {
         applicationRepository.save(app);
     }
 
-    // ✅ HR: delete
+
     public void deleteApplication(Long id) {
         applicationRepository.deleteById(id);
     }

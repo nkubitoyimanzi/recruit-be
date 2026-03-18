@@ -18,13 +18,13 @@ public class Application {
     private String status;
     private String rejectionReason;
 
-    // ✅ Store Cloudinary URL instead of file name
+
     @Column(name = "cv_url", columnDefinition = "TEXT")
     private String cvUrl;
 
     private Long jobId;
 
-    // Getters and Setters
+
 
     public Long getId() {
         return id;

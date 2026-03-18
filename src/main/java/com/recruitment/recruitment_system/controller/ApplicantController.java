@@ -17,7 +17,7 @@ public class ApplicantController {
     @Autowired
     private ApplicationService applicationService;
 
-    // ✅ Apply
+
     @PostMapping("/apply")
     public String apply(
             @RequestParam String firstName,
@@ -38,7 +38,7 @@ public class ApplicantController {
         );
     }
 
-    // ✅ View applications
+
     @GetMapping("/my-applications/{email}")
     public List<Application> getMyApplications(@PathVariable String email) {
         return applicationService.getApplicationsByEmail(email);

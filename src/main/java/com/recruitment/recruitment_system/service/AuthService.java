@@ -18,9 +18,7 @@ public class AuthService {
     @Autowired
     private UserRepository userRepository;
 
-    // ===============================
-    // REGISTER
-    // ===============================
+
     public String register(RegisterRequest request) {
 
         if (userRepository.existsByEmail(request.getEmail())) {
@@ -39,9 +37,7 @@ public class AuthService {
         return "User registered successfully";
     }
 
-    // ===============================
-    // LOGIN
-    // ===============================
+
     public Map<String, String> login(LoginRequest request) {
 
         Optional<User> userOptional = userRepository.findByEmail(request.getEmail());
