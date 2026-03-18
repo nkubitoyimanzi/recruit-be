@@ -33,7 +33,7 @@ public class AuthService {
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
         user.setRole(request.getRole());
-
+        System.out.println(user);
         userRepository.save(user);
 
         return "User registered successfully";
