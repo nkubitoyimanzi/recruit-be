@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/applicant")
-@CrossOrigin(origins = "https://recruitment-system-fro-git-282721-nkubitoyimanzi-8139s-projects.vercel.app/0")
+@CrossOrigin(origins = "https://recruitment-system-fro-git-282721-nkubitoyimanzi-8139s-projects.vercel.app")
 public class ApplicantController {
 
     @Autowired
