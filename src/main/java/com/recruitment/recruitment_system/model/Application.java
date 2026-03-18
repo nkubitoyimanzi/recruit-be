@@ -18,16 +18,22 @@ public class Application {
     private String status;
     private String rejectionReason;
 
-
     @Column(name = "cv_url", columnDefinition = "TEXT")
     private String cvUrl;
 
-    private Long jobId;
+    // ✅ FIX: Proper relationship with Job
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "job_id")
+    private Job job;
 
 
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -36,10 +42,6 @@ public class Application {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getLastName() {
@@ -90,11 +92,11 @@ public class Application {
         this.cvUrl = cvUrl;
     }
 
-    public Long getJobId() {
-        return jobId;
+    public Job getJob() {
+        return job;
     }
 
-    public void setJobId(Long jobId) {
-        this.jobId = jobId;
+    public void setJob(Job job) {
+        this.job = job;
     }
 }

@@ -2,7 +2,9 @@ package com.recruitment.recruitment_system.service;
 
 import com.cloudinary.Cloudinary;
 import com.recruitment.recruitment_system.model.Application;
+import com.recruitment.recruitment_system.model.Job;
 import com.recruitment.recruitment_system.repository.ApplicationRepository;
+import com.recruitment.recruitment_system.repository.JobRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +21,10 @@ public class ApplicationService {
 
     @Autowired
     private ApplicationRepository applicationRepository;
+
+    // ✅ NEW: Job repository
+    @Autowired
+    private JobRepository jobRepository;
 
     @Autowired(required = false)
     private Cloudinary cloudinary;
@@ -39,16 +45,18 @@ public class ApplicationService {
         application.setLastName(lastName);
         application.setEmail(email);
         application.setPhone(phone);
-        application.setJobId(jobId);
         application.setStatus("PENDING");
 
+        // ✅ FIX: Fetch job and set relationship
+        Job job = jobRepository.findById(jobId)
+                .orElseThrow(() -> new RuntimeException("Job not found"));
 
+        application.setJob(job);
+
+        // Upload CV to Cloudinary
         if (cloudinary != null && !cv.isEmpty()) {
-
             Map uploadResult = cloudinary.uploader().upload(cv.getBytes(), Map.of());
-
             String cvUrl = uploadResult.get("secure_url").toString();
-
             application.setCvUrl(cvUrl);
         }
 
