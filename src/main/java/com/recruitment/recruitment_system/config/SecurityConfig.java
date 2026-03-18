@@ -19,19 +19,16 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // ✅ FIXED
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
 
+                // 🔥 VERY IMPORTANT: allow everything
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/applicant/**").permitAll()
-                        .requestMatchers("/hr/**").permitAll()
-                        .requestMatchers("/dashboard/**").permitAll()
-                        .requestMatchers("/mock/**").permitAll()
                         .anyRequest().permitAll()
                 )
 
-                .httpBasic(httpBasic -> {});
+                // ❌ REMOVE BASIC AUTH (this was causing 401)
+                .httpBasic(httpBasic -> httpBasic.disable());
 
         return http.build();
     }
@@ -41,17 +38,16 @@ public class SecurityConfig {
 
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(List.of(
-                "http://localhost:3000",
-                "https://recruitment-system-fro-git-282721-nkubitoyimanzi-8139s-projects.vercel.app"
-        ));
+        // ✅ Allow ALL origins (correct way)
+        configuration.setAllowedOriginPatterns(List.of("*"));
 
-        configuration.setAllowedMethods(List.of(
-                "GET", "POST", "PUT", "DELETE", "OPTIONS"
-        ));
+        // ✅ Allow ALL HTTP methods
+        configuration.setAllowedMethods(List.of("*"));
 
+        // ✅ Allow ALL headers
         configuration.setAllowedHeaders(List.of("*"));
 
+        // ✅ Allow credentials (cookies, auth headers)
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
